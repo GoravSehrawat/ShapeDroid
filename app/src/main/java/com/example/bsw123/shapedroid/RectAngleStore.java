@@ -83,13 +83,14 @@ public class RectAngleStore {
 
 
     }
-    public void printCoordinates(){
+    public String printCoordinates(){
         String output="coordinates:[";
         output+=makeCoordinateSets(this.getX1coordinate(),this.getY1coordinate());
         output+=makeCoordinateSets(this.getX2coordinate(),this.getY2coordinate());
         output+=makeCoordinateSets(this.getX3coordinate(),this.getY3coordinate());
         output+=makeCoordinateSets(this.getX4coordinate(),this.getY4coordinate());
         output+="]";
-        System.out.println(output);
+       // System.out.println(output);
+        return output;
     }
 }

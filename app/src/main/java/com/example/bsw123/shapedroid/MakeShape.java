@@ -22,6 +22,7 @@ public class MakeShape extends View {
     Bitmap bmp;
     Paint mPaint;
     ArrayList<Point> pointsList=new ArrayList<>();
+    ArrayList<RectAngleStore> Store=new ArrayList<>();
     float width = 200.0f;
     float height = 100.0f;
 
@@ -39,12 +40,16 @@ public class MakeShape extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.WHITE);
-        ArrayList<RectAngleStore> Store;
-        Store = new ArrayList();
         Iterator<Point> iter = pointsList.iterator();
-        while(iter.hasNext()){
-            //System.out.println(iter.next());
-            Point touch =iter.next();
+        int length=pointsList.size();
+        if(length==0){
+            return;
+        }
+        Point touch=pointsList.get(pointsList.size()-1) ;
+       // while(iter.hasNext()){
+            System.out.println("count");
+
+           // Point touch =iter.next();
             float x = touch.getX();
             float y=touch.getY();
           //  if (touched) {
@@ -59,19 +64,23 @@ public class MakeShape extends View {
                 object.setY3coordinate(y+height/2);
                 object.setY4coordinate(y+height/2);
                 Store.add(object);
-            }
 
 
-        Iterator<RectAngleStore> iter2 = Store.iterator();
-        while(iter2.hasNext())
-        {
-            RectAngleStore yp = iter2.next();
-            yp.printCoordinates();
-        }
+
 
 
     }
 
+    public String print(){
+        Iterator<RectAngleStore> iter2 = Store.iterator();
+        String message = "";
+        while(iter2.hasNext())
+        {
+            RectAngleStore yp = iter2.next();
+            message+=yp.printCoordinates();
+        }
+        return  message;
+    }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         touched = true;

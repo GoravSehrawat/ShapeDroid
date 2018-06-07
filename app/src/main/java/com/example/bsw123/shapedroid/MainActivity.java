@@ -1,10 +1,15 @@
 package com.example.bsw123.shapedroid;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.constraint.solver.widgets.Rectangle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 
 /**
  * Skeleton of an Android Things activity.
@@ -26,12 +31,38 @@ import android.support.constraint.solver.widgets.Rectangle;
  * @see <a href="https://github.com/androidthings/contrib-drivers#readme">https://github.com/androidthings/contrib-drivers#readme</a>
  */
 public class MainActivity extends Activity {
+    private FrameLayout frame;
+    private Button showButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_main);
-       setContentView(new MakeShape(this
-       ));
+        setContentView(R.layout.activity_main);
+
+        frame = (FrameLayout) findViewById(R.id.parent_of_shape);
+        final MakeShape ref=new MakeShape(this);
+        frame.addView(ref);
+        showButton = (Button) findViewById(R.id.button);
+        showButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+
+                AlertDialog alert = new AlertDialog.Builder(MainActivity.this).create();
+                alert.setTitle("Coordinates Are:");
+                alert.setMessage(ref.print());
+                alert.setButton("OK", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+
+                    }
+                });
+                alert.show();
+            }
+        });
+
+//        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.parent_of_shape).addView(new MakeShape(this));
+        //setContentView(new MakeShape(this));
     }
 }
