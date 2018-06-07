@@ -10,6 +10,7 @@ import android.support.constraint.solver.widgets.Rectangle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.SeekBar;
 
 /**
  * Skeleton of an Android Things activity.
@@ -33,6 +34,7 @@ import android.widget.FrameLayout;
 public class MainActivity extends Activity {
     private FrameLayout frame;
     private Button showButton;
+    private SeekBar slider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,27 @@ public class MainActivity extends Activity {
         frame = (FrameLayout) findViewById(R.id.parent_of_shape);
         final MakeShape ref=new MakeShape(this);
         frame.addView(ref);
-        showButton = (Button) findViewById(R.id.button);
+        slider=(SeekBar)findViewById(R.id.setHeight);
+        slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+                 ref.setDimensions(300,440);
+
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+                // TODO Auto-generated method stub
+
+
+            }
+        });
+            showButton = (Button) findViewById(R.id.button);
         showButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {

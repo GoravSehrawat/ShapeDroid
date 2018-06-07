@@ -36,35 +36,29 @@ public class MakeShape extends View {
         mPaint.setStyle(Paint.Style.STROKE);
     }
 
-
+    public void setDimensions(float width,float height){
+        this.width=width;
+        this.height=height;
+    }
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.WHITE);
+
         Iterator<Point> iter = pointsList.iterator();
-        int length=pointsList.size();
-        if(length==0){
-            return;
-        }
-        Point touch=pointsList.get(pointsList.size()-1) ;
-       // while(iter.hasNext()){
-            System.out.println("count");
+//        int length=pointsList.size();
+//        if(length==0){
+//            return;
+//        }
+       // Point touch=pointsList.get(pointsList.size()-1) ;
+        while(iter.hasNext()) {
 
-           // Point touch =iter.next();
+            Point touch = iter.next();
             float x = touch.getX();
-            float y=touch.getY();
-          //  if (touched) {
-                RectAngleStore object=new RectAngleStore();
-                canvas.drawRect(x - width/2, y - height/2, x + width/2, y + height/2, mPaint);
-                object.setX1coordinate(x-width/2);
-                object.setX2coordinate(x+width/2);
-                object.setX3coordinate(x+width/2);
-                object.setX4coordinate(x-width/2);
-                object.setY1coordinate(y-height/2);
-                object.setY2coordinate(y-height/2);
-                object.setY3coordinate(y+height/2);
-                object.setY4coordinate(y+height/2);
-                Store.add(object);
+            float y = touch.getY();
+            //  if (touched) {
+            canvas.drawRect(x - width / 2, y - height / 2, x + width / 2, y + height / 2, mPaint);
 
+        }
 
 
 
@@ -84,11 +78,24 @@ public class MakeShape extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         touched = true;
-        //getting the touched x and y position
-        x = event.getX();
-         y = event.getY();
-        pointsList.add(new Point(x,y));
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            //getting the touched x and y position
+            x = event.getX();
+            y = event.getY();
+            pointsList.add(new Point(x, y));
+            RectAngleStore object = new RectAngleStore();
+            System.out.println("count");
 
+            object.setX1coordinate(x - width / 2);
+            object.setX2coordinate(x + width / 2);
+            object.setX3coordinate(x + width / 2);
+            object.setX4coordinate(x - width / 2);
+            object.setY1coordinate(y - height / 2);
+            object.setY2coordinate(y - height / 2);
+            object.setY3coordinate(y + height / 2);
+            object.setY4coordinate(y + height / 2);
+            Store.add(object);
+        }
         invalidate();
         return true;
     }
