@@ -21,6 +21,7 @@ public class MakeShape extends View {
     float x, y;
     Bitmap bmp;
     Paint mPaint;
+    ArrayList<Point> pointsList=new ArrayList<>();
     float width = 200.0f;
     float height = 100.0f;
 
@@ -40,23 +41,31 @@ public class MakeShape extends View {
         canvas.drawColor(Color.WHITE);
         ArrayList<RectAngleStore> Store;
         Store = new ArrayList();
-        if (touched) {
-            RectAngleStore object=new RectAngleStore();
-            canvas.drawRect(x - width/2, y - height/2, x + width/2, y + height/2, mPaint);
-            object.setX1coordinate(x-width/2);
-            object.setX2coordinate(x+width/2);
-            object.setX3coordinate(x+width/2);
-            object.setX4coordinate(x-width/2);
-            object.setY1coordinate(y-height/2);
-            object.setY2coordinate(y-height/2);
-            object.setY3coordinate(y+height/2);
-            object.setY4coordinate(y+height/2);
-            Store.add(object);
-        }
-        Iterator<RectAngleStore> iter = Store.iterator();
-        while(iter.hasNext())
+        Iterator<Point> iter = pointsList.iterator();
+        while(iter.hasNext()){
+            //System.out.println(iter.next());
+            Point touch =iter.next();
+            float x = touch.getX();
+            float y=touch.getY();
+          //  if (touched) {
+                RectAngleStore object=new RectAngleStore();
+                canvas.drawRect(x - width/2, y - height/2, x + width/2, y + height/2, mPaint);
+                object.setX1coordinate(x-width/2);
+                object.setX2coordinate(x+width/2);
+                object.setX3coordinate(x+width/2);
+                object.setX4coordinate(x-width/2);
+                object.setY1coordinate(y-height/2);
+                object.setY2coordinate(y-height/2);
+                object.setY3coordinate(y+height/2);
+                object.setY4coordinate(y+height/2);
+                Store.add(object);
+            }
+
+
+        Iterator<RectAngleStore> iter2 = Store.iterator();
+        while(iter2.hasNext())
         {
-            RectAngleStore yp = iter.next();
+            RectAngleStore yp = iter2.next();
             yp.printCoordinates();
         }
 
@@ -68,7 +77,9 @@ public class MakeShape extends View {
         touched = true;
         //getting the touched x and y position
         x = event.getX();
-        y = event.getY();
+         y = event.getY();
+        pointsList.add(new Point(x,y));
+
         invalidate();
         return true;
     }
