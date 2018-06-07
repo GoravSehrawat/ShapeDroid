@@ -21,7 +21,7 @@ public class MakeShape extends View {
     float x, y;
     Bitmap bmp;
     Paint mPaint;
-    ArrayList<Point> pointsList=new ArrayList<>();
+    ArrayList<Dimensions> pointsList=new ArrayList<>();
     ArrayList<RectAngleStore> Store=new ArrayList<>();
     float width = 200.0f;
     float height = 100.0f;
@@ -44,17 +44,14 @@ public class MakeShape extends View {
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.WHITE);
 
-        Iterator<Point> iter = pointsList.iterator();
-//        int length=pointsList.size();
-//        if(length==0){
-//            return;
-//        }
-       // Point touch=pointsList.get(pointsList.size()-1) ;
+        Iterator<Dimensions> iter = pointsList.iterator();
         while(iter.hasNext()) {
 
-            Point touch = iter.next();
+            Dimensions touch = iter.next();
             float x = touch.getX();
             float y = touch.getY();
+            float width=touch.getWidth();
+            float height=touch.getHeight();
             //  if (touched) {
             canvas.drawRect(x - width / 2, y - height / 2, x + width / 2, y + height / 2, mPaint);
 
@@ -82,7 +79,7 @@ public class MakeShape extends View {
             //getting the touched x and y position
             x = event.getX();
             y = event.getY();
-            pointsList.add(new Point(x, y));
+            pointsList.add(new Dimensions(x, y,width,height));
             RectAngleStore object = new RectAngleStore();
             System.out.println("count");
 
