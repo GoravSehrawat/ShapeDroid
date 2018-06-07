@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         frame = (FrameLayout) findViewById(R.id.parent_of_shape);
         final MakeShape ref=new MakeShape(this);
         frame.addView(ref);
@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // TODO Auto-generated method stub
                 //setting the height and width of the square.
-                 ref.setDimensions(300,440);
+                ref.setDimensions(seekBar.getProgress(),seekBar.getProgress());
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -62,7 +62,9 @@ public class MainActivity extends Activity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
                 // TODO Auto-generated method stub
+                System.out.print(progress);
 
+                //updating the current value on slider
 
             }
         });

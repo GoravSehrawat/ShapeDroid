@@ -25,8 +25,8 @@ public class MakeShape extends View {
     ArrayList<Dimensions> pointsList=new ArrayList<>();
     //an arraylist of object named store of class rectangle store.
     ArrayList<RectAngleStore> Store=new ArrayList<>();
-    float width = 200.0f;//setting default values for width and height
-    float height = 100.0f;
+    float width = 10.0f;//setting default values for width and height
+    float height = 10.0f;
 
     boolean touched = false;
 //setting up the paint to draw
