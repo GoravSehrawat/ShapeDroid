@@ -3,7 +3,7 @@ package com.example.bsw123.shapedroid;
 /**
  * Created by bsw123 on 07/06/18.
  */
-
+//a utility class to store dimensions and touch for a rectangle.
 public class Dimensions {
     private float width;
     private float height;

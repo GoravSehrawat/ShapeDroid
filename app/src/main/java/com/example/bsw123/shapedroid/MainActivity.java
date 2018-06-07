@@ -40,17 +40,19 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        
         frame = (FrameLayout) findViewById(R.id.parent_of_shape);
         final MakeShape ref=new MakeShape(this);
         frame.addView(ref);
+
+        //slider to adjust the dimensions
         slider=(SeekBar)findViewById(R.id.setHeight);
         slider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // TODO Auto-generated method stub
+                //setting the height and width of the square.
                  ref.setDimensions(300,440);
-
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -64,27 +66,22 @@ public class MainActivity extends Activity {
 
             }
         });
-            showButton = (Button) findViewById(R.id.button);
+
+        //a button to show coordinates
+        showButton = (Button) findViewById(R.id.button);
         showButton.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View v) {
-
-
                 AlertDialog alert = new AlertDialog.Builder(MainActivity.this).create();
                 alert.setTitle("Coordinates Are:");
+                //ref.print to print all the coordinates
                 alert.setMessage(ref.print());
                 alert.setButton("OK", new DialogInterface.OnClickListener() {
-
                     public void onClick(DialogInterface dialog, int which) {
                         // TODO Auto-generated method stub
-
                     }
                 });
                 alert.show();
             }
         });
-
-//        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.parent_of_shape).addView(new MakeShape(this));
-        //setContentView(new MakeShape(this));
-    }
+   }
 }

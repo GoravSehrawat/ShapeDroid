@@ -3,7 +3,7 @@ package com.example.bsw123.shapedroid;
 /**
  * Created by bsw123 on 07/06/18.
  */
-
+//utility class for rectangles coordinates.
 public class RectAngleStore {
     private float X1coordinate;
     private float X2coordinate;
@@ -77,12 +77,14 @@ public class RectAngleStore {
     public void setY4coordinate(float y4coordinate) {
         Y4coordinate = y4coordinate;
     }
+    //function to make set of coordinates for a quadrant.
     public String makeCoordinateSets(float x,float y){
         String output ="("+x+","+y+")";
         return  output;
 
 
     }
+    //utility function to print coordinates for a particular rectangle .
     public String printCoordinates(){
         String output="coordinates:[";
         output+=makeCoordinateSets(this.getX1coordinate(),this.getY1coordinate());
